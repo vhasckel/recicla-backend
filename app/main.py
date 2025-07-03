@@ -3,6 +3,10 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
+from app.api.v1.endpoints import gemini
+from app.api.v1.endpoints import collection_points
+from app.api.v1.endpoints import user
+
 load_dotenv()
 
 app = FastAPI()
@@ -28,13 +32,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from app.api.v1.endpoints import gemini
 
 app.include_router(gemini.router, prefix="/api")
-
-from app.api.v1.endpoints import collection_points
-
 app.include_router(collection_points.router, prefix="/api/v1/collection_points")
+app.include_router(user.router, prefix="/api/v1/user")
 
 
 @app.get("/")
