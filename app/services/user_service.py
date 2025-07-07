@@ -19,7 +19,7 @@ class UserService:
         for user in self.db.values():
             if user.email == email:
                 return user
-            return None
+        return None
 
     def get_all_users(self) -> List[UserInDB]:
         return list(self.db.values())

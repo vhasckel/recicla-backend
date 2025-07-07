@@ -7,6 +7,11 @@ from datetime import datetime
 class UserBase(BaseModel):
     email: EmailStr
     full_name: Optional[str] = None
+    city: Optional[str] = None
+    cep: Optional[str] = None
+    neighborhood: Optional[str] = None
+    street: Optional[str] = None
+    number: Optional[str] = None
 
 
 class UserCreate(UserBase):
@@ -16,6 +21,11 @@ class UserCreate(UserBase):
 class UserUpdate(BaseModel):
     email: Optional[EmailStr] = None
     full_name: Optional[str] = None
+    city: Optional[str] = None
+    cep: Optional[str] = None
+    neighborhood: Optional[str] = None
+    street: Optional[str] = None
+    number: Optional[str] = None
     passsword: Optional[str] = Field(None, min_length=8)
     is_active: Optional[bool] = None
 
@@ -38,3 +48,8 @@ class UserInDB(UserBase):
     is_active: bool = True
     created_at: datetime
     updated_at: datetime
+
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str

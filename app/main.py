@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from app.api.v1.endpoints import gemini
 from app.api.v1.endpoints import collection_points
 from app.api.v1.endpoints import user
+from app.api.v1.endpoints import auth
 
 load_dotenv()
 
@@ -36,6 +37,7 @@ app.add_middleware(
 app.include_router(gemini.router, prefix="/api")
 app.include_router(collection_points.router, prefix="/api/v1/collection_points")
 app.include_router(user.router, prefix="/api/v1/user")
+app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
 
 
 @app.get("/")
